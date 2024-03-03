@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TaskManagement.Infra.Data.Context;
 namespace TaskManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240303231012_AddTaskProject")]
+    partial class AddTaskProject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 3, 23, 15, 5, 374, DateTimeKind.Utc).AddTicks(6089),
+                            CreateAt = new DateTime(2024, 3, 3, 23, 10, 11, 700, DateTimeKind.Utc).AddTicks(6391),
                             ProjectName = "Projeto",
                             TaskProjectId = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserId = 1
@@ -110,12 +113,11 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 3, 23, 15, 5, 374, DateTimeKind.Utc).AddTicks(8890),
                             Description = "Descrição",
-                            DueDate = new DateTime(2024, 3, 3, 20, 15, 5, 374, DateTimeKind.Local).AddTicks(8838),
+                            DueDate = new DateTime(2024, 3, 3, 20, 10, 11, 700, DateTimeKind.Local).AddTicks(9031),
                             Priority = 0,
                             ProjectId = 1,
-                            Status = 1,
+                            Status = 0,
                             Title = "Projeto"
                         });
                 });
@@ -152,7 +154,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 3, 23, 15, 5, 375, DateTimeKind.Utc).AddTicks(445),
+                            CreateAt = new DateTime(2024, 3, 3, 23, 10, 11, 701, DateTimeKind.Utc).AddTicks(967),
                             Email = "admin@gmail.com",
                             Name = "Admin"
                         });

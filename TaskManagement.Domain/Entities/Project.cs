@@ -9,6 +9,10 @@ namespace TaskManagement.Domain.Entities
         public int? UserId { get; private set; }
         public virtual User User { get; private set; }
 
+        public List<TaskProject> TaskProject { get; private set; }
+
+        public Guid TaskProjectId { get; set; }
+
         public Project()
         {
 
