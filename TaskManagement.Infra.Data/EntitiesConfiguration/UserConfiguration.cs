@@ -19,11 +19,7 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
 
-
-            builder.HasData(
-                new User(Guid.NewGuid(), "Jhonny Costa123", "jhonnydscosta@gmail.com", null, DateTime.UtcNow),
-                new User(Guid.NewGuid(), "Letica Costa1234", "leticia@gmail.com", null, DateTime.UtcNow)
-                );
+            builder.HasData(new User(1, "Admin", "admin@gmail.com", DateTime.UtcNow, null));
         }
     }
 }

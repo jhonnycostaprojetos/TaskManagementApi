@@ -9,7 +9,7 @@ namespace TaskManagement.Domain.Entities
 
         public User() { }
 
-        public User(Guid id, string name, string email, DateTime? createdAt, DateTime? updateAt)
+        public User(int id, string name, string email, DateTime? createdAt, DateTime? updateAt)
         {
             ValidateDomain(name);
             Id = id;

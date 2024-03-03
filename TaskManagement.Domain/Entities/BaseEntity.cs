@@ -2,7 +2,7 @@
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         private DateTime? _createAt;
 
