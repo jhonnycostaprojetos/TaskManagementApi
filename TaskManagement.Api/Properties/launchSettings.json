@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "http": {
+    "taskManagement": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

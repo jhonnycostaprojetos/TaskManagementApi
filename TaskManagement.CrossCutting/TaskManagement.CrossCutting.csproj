@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TaskManagement.Application\TaskManagement.Application.csproj" />
     <ProjectReference Include="..\TaskManagement.Infra.Data\TaskManagement.Infra.Data.csproj" />
   </ItemGroup>
 
