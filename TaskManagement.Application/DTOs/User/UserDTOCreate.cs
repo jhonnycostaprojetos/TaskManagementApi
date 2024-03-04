@@ -1,20 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TaskManagement.Application.DTOs;
 
-
-namespace TaskManagement.Application.DTOs
+namespace TaskManagement.Application.DTOs.User
 {
-    public class UserDTO
+    public class UserDTOCreate
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "The Name is Required")]
         [MinLength(3)]
         [MaxLength(100)]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         [EmailAddress]
-        [MinLength(3)]
-        [MaxLength(100)]
         public string? Email { get; set; }
     }
 }

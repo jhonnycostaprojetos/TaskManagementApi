@@ -7,6 +7,8 @@ namespace TaskManagement.Domain.Entities
         public string Name { get; private set; }
         public string Email { get; private set; }
 
+        public IEnumerable<Project> Projects { get; private set; }
+
         public User() { }
 
         public User(int id, string name, string? email, DateTime? createdAt, DateTime? updateAt)

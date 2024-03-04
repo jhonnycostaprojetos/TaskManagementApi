@@ -1,10 +1,11 @@
-﻿using TaskManagement.Application.DTOs;
+﻿using TaskManagement.Application.DTOs.User;
 
 namespace TaskManagement.Application.Interfaces
 {
     public interface IUserService
     {
-        Task Post(UserDTO userDto);
+        Task<UserDtoCreateResponse> Post(UserDTOCreate userDto);
         Task<IEnumerable<UserDTO>> GetAll();
+        Task<UserDtoCreateResponse> Get(int id);
     }
 }

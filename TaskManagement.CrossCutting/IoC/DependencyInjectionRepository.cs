@@ -6,6 +6,7 @@ using TaskManagement.Application.Mappings;
 using TaskManagement.Application.Services;
 using TaskManagement.Domain.Interfaces;
 using TaskManagement.Infra.Data.Context;
+using TaskManagement.Infra.Data.Implementations;
 using TaskManagement.Infra.Data.Repositories;
 
 namespace TaskManagement.CrossCutting.IoC
@@ -18,6 +19,9 @@ namespace TaskManagement.CrossCutting.IoC
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<IProjectRepository, ProjectImplementation>();
+            services.AddScoped<IUserRepository, UserImplementation>();
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             return services;

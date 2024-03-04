@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TaskManagement.Application.DTOs;
+using TaskManagement.Application.DTOs.User;
 using TaskManagement.Application.Interfaces;
 
 namespace TaskManagement.Api.Controllers
@@ -15,18 +15,57 @@ namespace TaskManagement.Api.Controllers
             _userService = userService;
         }
         [HttpPost]
-        public async Task<IActionResult> Post(UserDTO userDto)
+        public async Task<IActionResult> Post([FromBody] UserDTOCreate userDtoCreate)
         {
-            await _userService.Post(userDto);
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _userService.Post(userDtoCreate);
+
+                if (result != null)
+                {
+                    return Created(new Uri(Url.Link("GetUserWithId", new { id = result.Id })), result);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+
         }
 
-        [HttpGet]
+        [HttpGet("{id}", Name = "GetUserWithId")]
+        public async Task<ActionResult> GetUserWithId(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                return Ok(await _userService.Get(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+
+        [HttpGet("GetAllUser")]
         public async Task<ActionResult> GetAll()
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);  // 400 Bad Request - Solicitação Inválida
+                return BadRequest(ModelState);
             }
             try
             {
