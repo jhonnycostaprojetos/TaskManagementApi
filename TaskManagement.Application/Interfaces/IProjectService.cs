@@ -8,7 +8,7 @@ namespace TaskManagement.Application.Interfaces
         Task<ProjectDTOCreateResponse> Post(ProjectDTOCreate projectDto);
         Task<ProjectDTO> Get(int idproject);
         Task<IEnumerable<ProjectDTO>> GetAll();
-        Task<ProjectDTOUpdateResponse> Put(ProjectDTOUpdate cep);
+        Task<ProjectDTOUpdateResponse> Put(ProjectDTOUpdate projectDTOUpdate);
         Task<object> Delete(int id);
     }
 }

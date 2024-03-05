@@ -32,7 +32,6 @@ namespace TaskManagement.Api.Controllers
             }
             try
             {
-                var a = await _projectService.Get(idUser);
                 return Ok(await _userService.Get(idUser));
             }
             catch (ArgumentException e)

@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using TaskManagement.Domain.Enums;
+﻿using TaskManagement.Domain.Enums;
 using TaskManagement.Domain.Validation;
 
 namespace TaskManagement.Domain.Entities
@@ -13,21 +12,25 @@ namespace TaskManagement.Domain.Entities
         public DateTime DueDate { get; private set; }
         public StatusTask Status { get; private set; }
         public TaskPriority Priority { get; private set; }
+        public IEnumerable<Comment> Comments { get; private set; }
 
         public TaskProject()
         {
 
         }
 
-        public TaskProject(int id, int projectId, string title, string description, DateTime dueDate, DateTime? createdAt, DateTime? updateAt, StatusTask status = 0, TaskPriority taskPriority = 0)
+        public TaskProject(string description)
+        {
+            Description = description;
+        }
+
+        public TaskProject(int id, int projectId, string title, string description, DateTime dueDate, DateTime? createdAt, DateTime? updateAt)
         {
             ValidateDomain(title);
             Id = id;
             ProjectId = projectId;
             Title = title;
             Description = description;
-            Status = status;
-            Priority = taskPriority;
             DueDate = dueDate;
             CreateAt = createdAt;
             UpdateAt = updateAt;
