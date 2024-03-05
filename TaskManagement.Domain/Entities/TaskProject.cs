@@ -5,13 +5,13 @@ namespace TaskManagement.Domain.Entities
 {
     public sealed class TaskProject : BaseEntity
     {
-        public int ProjectId { get; private set; }        
+        public int ProjectId { get; private set; }
         public Project Project { get; private set; }
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public DateTime DueDate { get; private set; }
-        public StatusTask Status { get; private set; }
-        public TaskPriority Priority { get; private set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public DateTime? DueDate { get; set; }
+        public StatusTask? Status { get; set; }
+        public TaskPriority? Priority { get; set; }
         public IEnumerable<Comment> Comments { get; private set; }
 
         public TaskProject()

@@ -11,6 +11,7 @@ namespace TaskManagement.Infra.Data.Context
         public DbSet<Project> Projects { get; set; }
         public DbSet<TaskProject> TaskProjects { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<LogTaskProject> LogTaskProjects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

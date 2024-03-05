@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TaskManagement.Infra.Data.Context;
 namespace TaskManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305192555_alterPriorityNull")]
+    partial class alterPriorityNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +123,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 353, DateTimeKind.Utc).AddTicks(8597),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 25, 54, 837, DateTimeKind.Utc).AddTicks(5530),
                             ProjectName = "Projeto",
                             UserId = 1
                         });
@@ -144,6 +147,9 @@ namespace TaskManagement.Infra.Data.Migrations
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("LogTaskProjectId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("Priority")
                         .HasColumnType("int");
 
@@ -162,6 +168,8 @@ namespace TaskManagement.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LogTaskProjectId");
+
                     b.HasIndex("ProjectId");
 
                     b.ToTable("TaskProjects");
@@ -170,9 +178,9 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 354, DateTimeKind.Utc).AddTicks(704),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 25, 54, 837, DateTimeKind.Utc).AddTicks(7830),
                             Description = "Descrição",
-                            DueDate = new DateTime(2024, 3, 5, 16, 39, 43, 354, DateTimeKind.Local).AddTicks(673),
+                            DueDate = new DateTime(2024, 3, 5, 16, 25, 54, 837, DateTimeKind.Local).AddTicks(7787),
                             ProjectId = 1,
                             Title = "Projeto"
                         });
@@ -215,7 +223,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 354, DateTimeKind.Utc).AddTicks(2307),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 25, 54, 837, DateTimeKind.Utc).AddTicks(9584),
                             Email = "admin@gmail.com",
                             Name = "Admin"
                         });
@@ -241,6 +249,10 @@ namespace TaskManagement.Infra.Data.Migrations
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.TaskProject", b =>
                 {
+                    b.HasOne("TaskManagement.Domain.Entities.LogTaskProject", null)
+                        .WithMany("TaskProject")
+                        .HasForeignKey("LogTaskProjectId");
+
                     b.HasOne("TaskManagement.Domain.Entities.Project", "Project")
                         .WithMany("TaskProject")
                         .HasForeignKey("ProjectId")
@@ -260,6 +272,11 @@ namespace TaskManagement.Infra.Data.Migrations
             modelBuilder.Entity("TaskManagement.Domain.Entities.Comment", b =>
                 {
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.LogTaskProject", b =>
+                {
+                    b.Navigation("TaskProject");
                 });
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.Project", b =>

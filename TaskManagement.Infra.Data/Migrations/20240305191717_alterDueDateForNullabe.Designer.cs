@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TaskManagement.Infra.Data.Context;
 namespace TaskManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305191717_alterDueDateForNullabe")]
+    partial class alterDueDateForNullabe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +123,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 353, DateTimeKind.Utc).AddTicks(8597),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 17, 16, 974, DateTimeKind.Utc).AddTicks(4872),
                             ProjectName = "Projeto",
                             UserId = 1
                         });
@@ -138,22 +141,27 @@ namespace TaskManagement.Infra.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("varchar(1000)");
 
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Priority")
+                    b.Property<int?>("LogTaskProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Priority")
                         .HasColumnType("int");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Status")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
@@ -161,6 +169,8 @@ namespace TaskManagement.Infra.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LogTaskProjectId");
 
                     b.HasIndex("ProjectId");
 
@@ -170,10 +180,12 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 354, DateTimeKind.Utc).AddTicks(704),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 17, 16, 974, DateTimeKind.Utc).AddTicks(7161),
                             Description = "Descrição",
-                            DueDate = new DateTime(2024, 3, 5, 16, 39, 43, 354, DateTimeKind.Local).AddTicks(673),
+                            DueDate = new DateTime(2024, 3, 5, 16, 17, 16, 974, DateTimeKind.Local).AddTicks(7118),
+                            Priority = 0,
                             ProjectId = 1,
+                            Status = 0,
                             Title = "Projeto"
                         });
                 });
@@ -215,7 +227,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 19, 39, 43, 354, DateTimeKind.Utc).AddTicks(2307),
+                            CreateAt = new DateTime(2024, 3, 5, 19, 17, 16, 974, DateTimeKind.Utc).AddTicks(9212),
                             Email = "admin@gmail.com",
                             Name = "Admin"
                         });
@@ -241,6 +253,10 @@ namespace TaskManagement.Infra.Data.Migrations
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.TaskProject", b =>
                 {
+                    b.HasOne("TaskManagement.Domain.Entities.LogTaskProject", null)
+                        .WithMany("TaskProject")
+                        .HasForeignKey("LogTaskProjectId");
+
                     b.HasOne("TaskManagement.Domain.Entities.Project", "Project")
                         .WithMany("TaskProject")
                         .HasForeignKey("ProjectId")
@@ -260,6 +276,11 @@ namespace TaskManagement.Infra.Data.Migrations
             modelBuilder.Entity("TaskManagement.Domain.Entities.Comment", b =>
                 {
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.LogTaskProject", b =>
+                {
+                    b.Navigation("TaskProject");
                 });
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.Project", b =>

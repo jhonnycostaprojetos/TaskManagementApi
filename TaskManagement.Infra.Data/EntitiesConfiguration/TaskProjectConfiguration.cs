@@ -11,11 +11,11 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(hk => hk.Id);
             builder.Property(p => p.ProjectId);
-            builder.Property(p => p.Title).HasMaxLength(100).HasColumnType("varchar(100)").IsRequired();
-            builder.Property(p => p.Description).HasMaxLength(1000).HasColumnType("varchar(1000)").IsRequired();
+            builder.Property(p => p.Title).HasMaxLength(100).HasColumnType("varchar(100)");
+            builder.Property(p => p.Description).HasMaxLength(1000).HasColumnType("varchar(1000)");
             builder.Property(p => p.DueDate);
             builder.Property(p => p.Status);
-            builder.Property(p => p.Priority).IsRequired();
+            builder.Property(p => p.Priority);
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
 

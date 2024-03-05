@@ -10,6 +10,5 @@ namespace TaskManagement.Application.DTOs.TaskProject
         public string? Description { get; set; }
         public int? Status { get; set; }
         public DateTime? DueDate { get; set; }
-        public CommentDTO Comment { get; set; }
     }
 }

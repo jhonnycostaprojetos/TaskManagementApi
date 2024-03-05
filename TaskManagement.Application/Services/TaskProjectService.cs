@@ -11,12 +11,16 @@ namespace TaskManagement.Application.Services
     public class TaskProjectService : ITaskProjectService
     {
         private ITaskProjectRepository _taskprojectRepository;
+        private ILogTaskProjectRepository _logTaskprojectRepository;
+
         private readonly IMapper _mapper;
 
-        public TaskProjectService(ITaskProjectRepository taskprojectRepository, IMapper mapper)
+        public TaskProjectService(ITaskProjectRepository taskprojectRepository, IMapper mapper, ILogTaskProjectRepository logTaskprojectRepository)
         {
             _mapper = mapper;
             _taskprojectRepository = taskprojectRepository;
+            _logTaskprojectRepository = logTaskprojectRepository;
+
         }
         public async Task<TaskProjectDTO> Get(int idproject)
         {
@@ -42,7 +46,13 @@ namespace TaskManagement.Application.Services
         {
             var projectEntity = _mapper.Map<TaskProject>(taskProjectDTOUpdate);
 
+            LogTaskProject logTaskProject = new LogTaskProject(taskProjectDTOUpdate.ProjectId,
+                taskProjectDTOUpdate.Title, taskProjectDTOUpdate.Description,taskProjectDTOUpdate.DueDate.Value, taskProjectDTOUpdate.Status.Value);
+
+            await _logTaskprojectRepository.InsertAsync(logTaskProject);
+
             var result = await _taskprojectRepository.UpdateAsync(projectEntity);
+
             return _mapper.Map<TaskProjectDTOUpdateResponse>(result);
         }
         public async Task<object> Delete(int id)

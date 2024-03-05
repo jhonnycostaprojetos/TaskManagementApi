@@ -8,5 +8,7 @@ namespace TaskManagement.Domain.Interfaces
 
         Task<TaskProject> InsertAsync(TaskProject item);
 
+        Task<TaskProject> UpdateAsync(TaskProject taskProject);
+
     }
 }
