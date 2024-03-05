@@ -12,8 +12,12 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.Title);
             builder.Property(p => p.Description);
             builder.Property(p => p.DueDate);
+            builder.Property(p => p.TaskComment);
+            builder.Property(p => p.UserId);
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
+            builder.Property(p => p.UpdateAt);
+
         }
     }
 }

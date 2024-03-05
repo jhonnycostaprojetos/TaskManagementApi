@@ -43,21 +43,21 @@ namespace TaskManagement.Infra.Data.Implementations
 
         public async Task<TaskProject> UpdateAsync(TaskProject taskProject)
         {
-            var tarefa = _dataset.FirstOrDefault(t => t.Id == taskProject.Id);
-            if (tarefa != null)
+            var task = _dataset.FirstOrDefault(t => t.Id == taskProject.Id);
+            if (task != null)
             {
-                // Armazene os valores anteriores
-                string? tituloAnterior = tarefa.Title;
-                string? descricaoAnterior = tarefa.Description;
-                TaskStatus? statusAnterior = (TaskStatus?)tarefa.Status;
-                DateTime? dueDateAnterior = tarefa.DueDate;
+ 
+                string? titleOld = task.Title;
+                string? descriptionOld = task.Description;
+                TaskStatus? statusOld = (TaskStatus?)task.Status;
+                DateTime? dueDateOld = task.DueDate;
 
-                tarefa.Title = !string.IsNullOrWhiteSpace(taskProject.Title) ? taskProject.Title : tarefa.Title;
-                tarefa.Description = !string.IsNullOrWhiteSpace(taskProject.Description) ? taskProject.Description : tarefa.Description;
-                tarefa.Status = taskProject.Status ?? tarefa.Status;
-                tarefa.Priority = taskProject.Priority ?? tarefa.Priority;
-                tarefa.DueDate = taskProject.DueDate ?? tarefa.DueDate;
-                tarefa.UpdateAt = DateTime.Now;
+                task.Title = !string.IsNullOrWhiteSpace(taskProject.Title) ? taskProject.Title : task.Title;
+                task.Description = !string.IsNullOrWhiteSpace(taskProject.Description) ? taskProject.Description : task.Description;
+                task.Status = taskProject.Status ?? task.Status;
+                task.Priority = taskProject.Priority ?? task.Priority;
+                task.DueDate = taskProject.DueDate ?? task.DueDate;
+                task.UpdateAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
 

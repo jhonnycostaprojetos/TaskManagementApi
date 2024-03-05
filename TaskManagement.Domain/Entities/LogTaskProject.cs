@@ -9,17 +9,26 @@ namespace TaskManagement.Domain.Entities
 {
     public class LogTaskProject : BaseEntity
     {
-        public int TaskProjectId { get; set; }
-        public string? Title { get; set; }
-        public string? Description { get; set; }
-        public DateTime? DueDate { get;  set; }
-        public int? Status { get; set; }
+        public int TaskProjectId { get; private set; }
+        public string? Title { get; private set; }
+        public string? Description { get; private set; }
+        public DateTime? DueDate { get; set; }
+        public int? Status { get; private set; }
+        public string TaskComment { get; private set; }
+        public int UserId { get; private set; }
 
 
         public LogTaskProject()
         {
 
-        }       
+        }
+
+        public LogTaskProject(int taskprojectId, string comment, int userID)
+        {
+            TaskProjectId = taskprojectId;
+            TaskComment = comment;
+            UserId = userID;
+        }
 
         public LogTaskProject(int taskprojectId, string title, string description, DateTime dueDate, int status)
         {
