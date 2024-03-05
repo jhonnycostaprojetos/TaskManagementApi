@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
-using TaskManagement.Application.DTOs;
+using TaskManagement.Application.DTOs.Project;
+using TaskManagement.Application.DTOs.TaskProject;
 using TaskManagement.Application.DTOs.User;
 using TaskManagement.Domain.Entities;
 
@@ -14,6 +15,11 @@ namespace TaskManagement.Application.Mappings
             CreateMap<User, UserDTOCreate>().ReverseMap();
             CreateMap<User, UserDtoCreateResponse>().ReverseMap();
             CreateMap<Project, ProjectDTO>().ReverseMap();
+            CreateMap<Project, ProjectDTOCreate>().ReverseMap();
+            CreateMap<Project, ProjectDTOCreateResponse>().ReverseMap();
+            CreateMap<Project, ProjectDTOUpdate>().ReverseMap();
+            CreateMap<Project, ProjectDTOUpdateResponse>().ReverseMap();
+            CreateMap<TaskProject, TaskProjectDTO>().ReverseMap();
         }
     }
 }

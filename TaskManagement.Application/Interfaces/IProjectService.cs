@@ -1,12 +1,14 @@
-﻿using TaskManagement.Application.DTOs;
-using TaskManagement.Domain.Entities;
+﻿using TaskManagement.Application.DTOs.Project;
+
 
 namespace TaskManagement.Application.Interfaces
 {
     public interface IProjectService
     {
-        Task Post(ProjectDTO userDto);
-        //Task<IEnumerable<ProjectDTO>> GetAll(int idproject);
+        Task<ProjectDTOCreateResponse> Post(ProjectDTOCreate projectDto);
         Task<ProjectDTO> Get(int idproject);
+        Task<IEnumerable<ProjectDTO>> GetAll();
+        Task<ProjectDTOUpdateResponse> Put(ProjectDTOUpdate cep);
+        Task<object> Delete(int id);
     }
 }

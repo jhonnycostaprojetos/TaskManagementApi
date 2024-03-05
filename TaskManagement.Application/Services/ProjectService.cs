@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagement.Application.DTOs;
+using TaskManagement.Application.DTOs.Project;
 using TaskManagement.Application.Interfaces;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interfaces;
@@ -33,9 +28,32 @@ namespace TaskManagement.Application.Services
             return _mapper.Map<ProjectDTO>(listEntity);
         }
 
-        public Task Post(ProjectDTO userDto)
+ 
+        public async Task<ProjectDTOCreateResponse> Post(ProjectDTOCreate projectDto)
         {
-            throw new NotImplementedException();
+            var userEntity = _mapper.Map<Project>(projectDto);
+            var result = await _projectRepository.InsertAsync(userEntity);
+
+            return _mapper.Map<ProjectDTOCreateResponse>(result);
+        }
+
+        public async Task<IEnumerable<ProjectDTO>> GetAll()
+        {
+            var listEntity = await _projectRepository.SelectAsync();
+            return _mapper.Map<IEnumerable<ProjectDTO>>(listEntity);
+        }
+
+        public async Task<ProjectDTOUpdateResponse> Put(ProjectDTOUpdate projectDto)
+        {
+            var projectEntity = _mapper.Map<Project>(projectDto);
+
+            var result = await _projectRepository.UpdateAsync(projectEntity);
+            return _mapper.Map<ProjectDTOUpdateResponse>(result);
+        }
+
+        public async Task<object> Delete(int id)
+        {
+            return await _projectRepository.DeleteAsync(id);
         }
     }
 }

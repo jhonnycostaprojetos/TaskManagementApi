@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Enums;
 using TaskManagement.Domain.Interfaces;
 using TaskManagement.Infra.Data.Context;
 using TaskManagement.Infra.Data.Repositories;
@@ -21,10 +18,44 @@ namespace TaskManagement.Infra.Data.Implementations
             _dataset = context.Set<Project>();
         }
 
-        public async Task<Project> SelectAsync(int idproject)
+        public async Task<Project> SelectAsync(int userId)
         {
-           return await _dataset.Include(i => i.User)
-                                 .SingleOrDefaultAsync(s => s.Id.Equals(idproject));
+            return await _dataset.Include(i => i.TaskProject).SingleOrDefaultAsync(s => s.Id.Equals(userId));
         }
+
+        public async Task<object> DeleteAsync(int id)
+        {
+            try
+            {
+                var filteredItems = _dataset.Where(i => i.Id == id && i.TaskProject.Any(x => x.Status == StatusTask.Pending || x.Status == StatusTask.Progress));
+
+                if (!filteredItems.IsNullOrEmpty())
+                {
+                    return new { Message = "Deletion not allowed! Please complete or remove Project tasks : " + filteredItems.Select(x => "ID: " + x.Id + " Project Name: " + x.ProjectName).FirstOrDefault() };
+                }
+                else
+                {
+                    var result = await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
+
+                    if (result == null)
+                    {
+                        return new { Message = "Not Found!" };
+                    }
+
+                    _dataset.Remove(result);
+                    await _context.SaveChangesAsync();
+
+                    return new { Message = "Sucess" };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+        }
+
     }
 }

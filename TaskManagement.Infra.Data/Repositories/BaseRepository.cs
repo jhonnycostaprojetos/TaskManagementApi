@@ -14,7 +14,7 @@ namespace TaskManagement.Infra.Data.Repositories
             _context = context;
             _dataset = _context.Set<T>();
         }
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<object> DeleteAsync(int id)
         {
             try
             {

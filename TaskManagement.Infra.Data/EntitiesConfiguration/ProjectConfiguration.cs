@@ -13,9 +13,8 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.UserId);            
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
-
-            builder.HasOne(ho => ho.User);
-            builder.HasOne(ho => ho.TaskProject).WithOne(wo => wo.Project);
+           
+            builder.HasMany(ho => ho.TaskProject).WithOne(wo => wo.Project);
 
             builder.HasData(new Project(1,"Projeto",1, null, null));
         }

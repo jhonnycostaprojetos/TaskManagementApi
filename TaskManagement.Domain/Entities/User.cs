@@ -23,7 +23,7 @@ namespace TaskManagement.Domain.Entities
 
         private void ValidateDomain(string name)
         {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name),"Invalid name.Name is required");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name.Name is required");
 
             Name = name;
         }

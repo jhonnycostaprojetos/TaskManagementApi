@@ -7,9 +7,8 @@ namespace TaskManagement.Domain.Entities
         public string ProjectName { get; private set; }
 
         public int? UserId { get; private set; }
-        public virtual User User { get; private set; }
 
-        public TaskProject TaskProject { get; private set; }
+        public IEnumerable<TaskProject> TaskProject { get; private set; }
 
         public Project()
         {
