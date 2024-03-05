@@ -4,21 +4,23 @@
     {
         public string TaskComment { get; private set; }
 
-        public int IdTaskProject { get; private set; }
-
+        public int TaskProjectId { get; private set; }
         public TaskProject TaskProject { get; private set; }
+
+        public int IdUser {  get; private set; }
+        public IEnumerable<User> User { get; private set; }
+
 
         public Comment()
         {
             
         }
 
-        public Comment(int id, string taskcomment, int idTaskProject )
+        public Comment(int id, string taskcomment, int taskProjectId)
         {
             Id = id;
-            IdTaskProject = idTaskProject;
-            TaskComment = taskcomment;            
-            
+            TaskProjectId = taskProjectId;
+            TaskComment = taskcomment;     
         }
     }
 }

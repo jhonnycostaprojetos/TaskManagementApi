@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TaskManagement.Infra.Data.Context;
 namespace TaskManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305161553_updateNameComment")]
+    partial class updateNameComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +36,9 @@ namespace TaskManagement.Infra.Data.Migrations
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdTaskProject")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
@@ -47,9 +53,14 @@ namespace TaskManagement.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TaskProjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -86,7 +97,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(344),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 15, 52, 929, DateTimeKind.Utc).AddTicks(1163),
                             ProjectName = "Projeto",
                             UserId = 1
                         });
@@ -138,9 +149,9 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(2933),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 15, 52, 929, DateTimeKind.Utc).AddTicks(3687),
                             Description = "Descrição",
-                            DueDate = new DateTime(2024, 3, 5, 13, 47, 33, 685, DateTimeKind.Local).AddTicks(2887),
+                            DueDate = new DateTime(2024, 3, 5, 13, 15, 52, 929, DateTimeKind.Local).AddTicks(3644),
                             Priority = 0,
                             ProjectId = 1,
                             Status = 0,
@@ -155,9 +166,6 @@ namespace TaskManagement.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CommentId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
@@ -177,15 +185,13 @@ namespace TaskManagement.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
-
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(4801),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 15, 52, 929, DateTimeKind.Utc).AddTicks(5732),
                             Email = "admin@gmail.com",
                             Name = "Admin"
                         });
@@ -199,7 +205,15 @@ namespace TaskManagement.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TaskManagement.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("TaskProject");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.Project", b =>
@@ -218,18 +232,6 @@ namespace TaskManagement.Infra.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("TaskManagement.Domain.Entities.User", b =>
-                {
-                    b.HasOne("TaskManagement.Domain.Entities.Comment", null)
-                        .WithMany("User")
-                        .HasForeignKey("CommentId");
-                });
-
-            modelBuilder.Entity("TaskManagement.Domain.Entities.Comment", b =>
-                {
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.Project", b =>

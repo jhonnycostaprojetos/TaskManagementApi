@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TaskManagement.Application.DTOs.Comment;
 using TaskManagement.Application.DTOs.Project;
 using TaskManagement.Application.DTOs.TaskProject;
 using TaskManagement.Application.Interfaces;
@@ -12,11 +13,13 @@ namespace TaskManagement.Api.Controllers
     public class TaskProjectController : ControllerBase
     {
         private readonly ITaskProjectService _taskProjService;
+        private readonly ICommentService _commentService;
 
 
-        public TaskProjectController(ITaskProjectService taskProjService)
+        public TaskProjectController(ITaskProjectService taskProjService, ICommentService commentService)
         {
             _taskProjService = taskProjService;
+            _commentService = commentService;
         }
 
         [HttpGet]
@@ -107,6 +110,34 @@ namespace TaskManagement.Api.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
+        }
+
+        [HttpPost("Comment")]
+        public async Task<IActionResult> PostComment([FromBody] CommentDTOCreate commentDtoCreate)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _commentService.Post(commentDtoCreate);
+
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+
         }
     }
 }

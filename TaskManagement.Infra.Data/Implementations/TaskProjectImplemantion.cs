@@ -17,7 +17,7 @@ namespace TaskManagement.Infra.Data.Implementations
 
         public async Task<IEnumerable<TaskProject>> GetAll(int idProject)
         {
-            return await _dataset.Include(c => c.Project).Where(w => w.ProjectId == idProject).ToListAsync();
+            return await _dataset.Include(c => c.Project).ThenInclude(t => t.TaskProject).ThenInclude(t => t.Comments).Where(w => w.ProjectId == idProject).ToListAsync();
         }
 
         public async Task<TaskProject> InsertAsync(TaskProject item)

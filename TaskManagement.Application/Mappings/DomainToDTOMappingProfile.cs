@@ -29,6 +29,8 @@ namespace TaskManagement.Application.Mappings
             CreateMap<TaskProject, TaskProjectDTOUpdateResponse>().ReverseMap();
 
             CreateMap<Comment, CommentDTO>().ReverseMap();
+            CreateMap<Comment, CommentDTOCreate>().ReverseMap();
+            CreateMap<Comment, CommentDTOCreateResponse>().ReverseMap();
 
         }
     }

@@ -25,6 +25,9 @@ namespace TaskManagement.CrossCutting.IoC
             services.AddScoped<ITaskProjectService, TaskProjectService>();
             services.AddScoped<ITaskProjectRepository, TaskProjectImplemantion>();
 
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ICommentRepository, CommentImplementation>();
+
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             return services;
         }

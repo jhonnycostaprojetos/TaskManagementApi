@@ -1,4 +1,6 @@
 ﻿
+using TaskManagement.Application.DTOs.Comment;
+
 namespace TaskManagement.Application.DTOs.TaskProject
 {
     public class TaskProjectDTO
@@ -11,5 +13,6 @@ namespace TaskManagement.Application.DTOs.TaskProject
         public int Priority { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime CreatAt { get; set; }
+        public List<CommentDTO> Comments { get; set; }
     }
 }

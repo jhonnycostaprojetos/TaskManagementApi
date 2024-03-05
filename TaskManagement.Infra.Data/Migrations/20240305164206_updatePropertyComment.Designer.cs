@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using TaskManagement.Infra.Data.Context;
 namespace TaskManagement.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240305164206_updatePropertyComment")]
+    partial class updatePropertyComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,6 +35,9 @@ namespace TaskManagement.Infra.Data.Migrations
 
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("IdTaskProject")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
@@ -86,7 +92,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(344),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 42, 5, 973, DateTimeKind.Utc).AddTicks(9124),
                             ProjectName = "Projeto",
                             UserId = 1
                         });
@@ -138,9 +144,9 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(2933),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 42, 5, 974, DateTimeKind.Utc).AddTicks(1646),
                             Description = "Descrição",
-                            DueDate = new DateTime(2024, 3, 5, 13, 47, 33, 685, DateTimeKind.Local).AddTicks(2887),
+                            DueDate = new DateTime(2024, 3, 5, 13, 42, 5, 974, DateTimeKind.Local).AddTicks(1608),
                             Priority = 0,
                             ProjectId = 1,
                             Status = 0,
@@ -185,7 +191,7 @@ namespace TaskManagement.Infra.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2024, 3, 5, 16, 47, 33, 685, DateTimeKind.Utc).AddTicks(4801),
+                            CreateAt = new DateTime(2024, 3, 5, 16, 42, 5, 974, DateTimeKind.Utc).AddTicks(3499),
                             Email = "admin@gmail.com",
                             Name = "Admin"
                         });
