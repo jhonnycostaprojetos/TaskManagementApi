@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Api", "TaskManagement.Api\TaskManagement.Api.csproj", "{0886A67D-4575-4ECE-9F51-9EC7802DD655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Api", "TaskManagement.Api\TaskManagement.Api.csproj", "{0886A67D-4575-4ECE-9F51-9EC7802DD655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infra.Data", "TaskManagement.Infra.Data\TaskManagement.Infra.Data.csproj", "{B4073BA8-A450-443A-A2CD-ABBB46259328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Infra.Data", "TaskManagement.Infra.Data\TaskManagement.Infra.Data.csproj", "{B4073BA8-A450-443A-A2CD-ABBB46259328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.CrossCutting", "TaskManagement.CrossCutting\TaskManagement.CrossCutting.csproj", "{119CE646-7037-4293-8592-FE57887F00DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.CrossCutting", "TaskManagement.CrossCutting\TaskManagement.CrossCutting.csproj", "{119CE646-7037-4293-8592-FE57887F00DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{26ADFA7B-E8DB-4CB3-B363-ECCB5E550FE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{26ADFA7B-E8DB-4CB3-B363-ECCB5E550FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application", "TaskManagement.Application\TaskManagement.Application.csproj", "{2752E33A-8A4E-4EE1-A94C-5FB677834367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Application", "TaskManagement.Application\TaskManagement.Application.csproj", "{2752E33A-8A4E-4EE1-A94C-5FB677834367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain.Tests", "TaskManagement.Domain.Tests\TaskManagement.Domain.Tests.csproj", "{530ECF93-84BB-4EF3-9B65-C22D7094539C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Domain.Tests", "TaskManagement.Domain.Tests\TaskManagement.Domain.Tests.csproj", "{530ECF93-84BB-4EF3-9B65-C22D7094539C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application.Tests", "TaskManagement.Application.Tests\TaskManagement.Application.Tests.csproj", "{53FF4794-4749-496D-BB6D-21F016B19812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Application.Tests", "TaskManagement.Application.Tests\TaskManagement.Application.Tests.csproj", "{53FF4794-4749-496D-BB6D-21F016B19812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Api.Tests", "TaskManagement.Api.Tests\TaskManagement.Api.Tests.csproj", "{64CC35E7-A089-4291-B251-F593E66CE385}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Api.Tests", "TaskManagement.Api.Tests\TaskManagement.Api.Tests.csproj", "{64CC35E7-A089-4291-B251-F593E66CE385}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infra.Data.Tests", "TaskManagement.Infra.Data.Tests\TaskManagement.Infra.Data.Tests.csproj", "{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Infra.Data.Tests", "TaskManagement.Infra.Data.Tests\TaskManagement.Infra.Data.Tests.csproj", "{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E0D6BB55-0626-4996-A378-97A20AA29ED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

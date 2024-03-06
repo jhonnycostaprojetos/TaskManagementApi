@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  taskmanagement.api:
+    image: ${DOCKER_REGISTRY-}taskmanagementapi
+    build:
+      context: .
+      dockerfile: TaskManagement.Api/Dockerfile 
+    environment:
+      DbServer: "sqldata"
+      DbPort: "1433"
+      DbUser: "SA"
+      Password: "Admin_sql@2024"
+      Database: "banco"
+    ports:
+      - "8081:80"
+    depends_on:
+      - sqldata
+  sqldata:
+   image: mcr.microsoft.com/mssql/server:2019-latest
+   environment:
+     SA_PASSWORD: "Admin_sql@2024"
+     ACCEPT_EULA: "Y"
+   volumes:
+     - c:\dados\volumes\mssql:/var/opt/mssql/data
+   ports:
+     - "1450:1433"
