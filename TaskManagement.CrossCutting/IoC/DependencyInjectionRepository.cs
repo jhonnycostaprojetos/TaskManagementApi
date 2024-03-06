@@ -30,6 +30,9 @@ namespace TaskManagement.CrossCutting.IoC
 
             services.AddScoped<ILogTaskProjectRepository, LogTaskProjectImplementation>();
 
+            services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<IReportRepository, ReportImplementation>();
+
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
             return services;

@@ -7,10 +7,6 @@
         public int TaskProjectId { get; private set; }
         public TaskProject TaskProject { get; private set; }
 
-        public int IdUser {  get; private set; }
-        public IEnumerable<User> User { get; private set; }
-
-
         public Comment()
         {
             

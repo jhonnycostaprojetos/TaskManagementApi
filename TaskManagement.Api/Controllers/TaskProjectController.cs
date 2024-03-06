@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TaskManagement.Application.DTOs.Comment;
-using TaskManagement.Application.DTOs.Project;
 using TaskManagement.Application.DTOs.TaskProject;
 using TaskManagement.Application.Interfaces;
-using TaskManagement.Application.Services;
 
 namespace TaskManagement.Api.Controllers
 {

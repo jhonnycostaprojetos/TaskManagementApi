@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.Infra.Data.EntitiesConfiguration
 {
@@ -16,6 +17,7 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.HasKey(hk => hk.Id);
             builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Email).HasMaxLength(100);
+            builder.Property(p => p.Profile);
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
 

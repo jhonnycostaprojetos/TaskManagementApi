@@ -15,7 +15,6 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.UpdateAt);
 
             builder.HasOne(ho => ho.TaskProject);
-            builder.HasMany(hm => hm.User);
 
         }
     }
