@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Report\WhenRequestCreate\" />
-    <Folder Include="Report\WhenRequestDelete\" />
-    <Folder Include="Report\WhenRequestGetByUserId\" />
-    <Folder Include="Report\WhenRequestUpdate\" />
     <Folder Include="TaskProject\WhenRequestCreate\" />
     <Folder Include="TaskProject\WhenRequestDelete\" />
     <Folder Include="TaskProject\WhenRequestGetByUserId\" />
