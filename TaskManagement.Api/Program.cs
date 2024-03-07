@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using TaskManagement.Api.Services;
 using TaskManagement.CrossCutting.IoC;
 
@@ -10,6 +11,22 @@ builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.WebHost.UseUrls("http://*:80");
+
+builder.Services.AddSwaggerGen(c =>
+   {
+       c.SwaggerDoc("v1", new OpenApiInfo
+       {
+           Version = "v1",
+           Title = "TaskManagementAPI",
+           Description = "API desenvolvida para o teste técnico ECPLISEWORKS ",
+           Contact = new OpenApiContact
+           {
+               Name = "Jhonny Costa",
+               Email = "jhonnydscosta@mail.com",
+               Url = new Uri("https://www.linkedin.com/in/jhonny-costa/")
+           }
+       });
+   });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
