@@ -15,6 +15,11 @@ Para executar o projeto baixe o docker e siga os passos:
    3. cd ..
    4. docker-compose up --build
    5. http://localhost:8081/swagger/index.html
+  
+   ![image](https://github.com/jhonnycostaprojetos/TaskManagementApi/assets/143847527/991d120c-38d3-4b9f-840c-071c98665b2d)
+
+![image](https://github.com/jhonnycostaprojetos/TaskManagementApi/assets/143847527/4ce580c9-ec17-42ec-ba07-3a26ea4323fc)
+
 
 Caso não tenha o docker instalado, será necessário:
     1. Instalação do SQLSERVER2019
