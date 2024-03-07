@@ -2,12 +2,12 @@
 {
     public class TaskProjectDTOCreateResponse
     {
-        public int Id {  get; set; }
-        public int ProjectId { get; private set; }
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public DateTime DueDate { get; private set; }
-        public int Status { get; private set; }
-        public int Priority { get; private set; }
+        public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime DueDate { get; set; }
+        public int Status { get; set; }
+        public int Priority { get; set; }
     }
 }

@@ -22,13 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TaskProject\WhenRequestCreate\" />
-    <Folder Include="TaskProject\WhenRequestDelete\" />
-    <Folder Include="TaskProject\WhenRequestGetByUserId\" />
-    <Folder Include="TaskProject\WhenRequestUpdate\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TaskManagement.Api\TaskManagement.Api.csproj" />
     <ProjectReference Include="..\TaskManagement.CrossCutting\TaskManagement.CrossCutting.csproj" />
   </ItemGroup>

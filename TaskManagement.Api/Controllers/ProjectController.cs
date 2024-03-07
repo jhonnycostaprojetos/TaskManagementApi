@@ -127,23 +127,5 @@ namespace TaskManagement.Api.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-
-        //[HttpGet]
-        //[Route("{userId}", Name = "ProjectWithUserId")]
-        //public async Task<ActionResult> Get(int userId)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);  // 400 Bad Request - Solicitação Inválida
-        //    }
-        //    try
-        //    {
-        //        return Ok(await _projectService.Get(userId));
-        //    }
-        //    catch (ArgumentException e)
-        //    {
-        //        return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
-        //    }
-        //}
     }
 }
