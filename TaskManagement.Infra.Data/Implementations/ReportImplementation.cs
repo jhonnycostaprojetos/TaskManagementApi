@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Enums;
 using TaskManagement.Domain.Interfaces;
@@ -18,26 +19,33 @@ namespace TaskManagement.Infra.Data.Implementations
 
         public async Task<object> Get(int idUser)
         {
-            var user = _userdataset.FirstOrDefault(u => u.Id == idUser);
+            try
+            {
+                var user = _userdataset.FirstOrDefault(u => u.Id == idUser);
 
-            if (user == null)
-                return new { Message = "User not found!" };
+                if (user == null)
+                    return new { Message = "User not found!" };
 
-            if (user.Profile != UserProfile.Manager)
-                return new { Message = "User lacks permission to access this resource!" };
+                if (user.Profile != UserProfile.Manager)
+                    return new { Message = "User lacks permission to access this resource!" };
 
 
-            DateTime dataLimite = DateTime.Now.AddDays(-30);
+                DateTime dataLimite = DateTime.Now.AddDays(-30);
 
-            return _userdataset.Include(u => u.Projects).ThenInclude(u => u.TaskProject.Where(t => t.Status == StatusTask.Concluded))
-                   .GroupBy(t => t.Name)
-                   .Select(g => new
-                   {
-                       User = g.Key,
-                       AverageCompletedTasks = Math.Round(g.Count() / 30.0, 2)
-                   })
-                  .ToList();
+                return _userdataset.Include(u => u.Projects).ThenInclude(u => u.TaskProject.Where(t => t.Status == StatusTask.Concluded))
+                       .GroupBy(t => t.Name)
+                       .Select(g => new
+                       {
+                           User = g.Key,
+                           AverageCompletedTasks = Math.Round(g.Count() / 30.0, 2)
+                       })
+                      .ToList();
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

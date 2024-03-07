@@ -14,7 +14,7 @@ namespace TaskManagement.Domain.Entities
         public string? Description { get; private set; }
         public DateTime? DueDate { get; set; }
         public int? Status { get; private set; }
-        public string TaskComment { get; private set; }
+        public string? TaskComment { get; private set; }
         public int UserId { get; private set; }
 
 
@@ -30,9 +30,10 @@ namespace TaskManagement.Domain.Entities
             UserId = userID;
         }
 
-        public LogTaskProject(int taskprojectId, string title, string description, DateTime dueDate, int status)
+        public LogTaskProject(int taskprojectId, int userId, string title, string description, DateTime dueDate, int status)
         {
             TaskProjectId = taskprojectId;
+            UserId = userId;
             Title = title;
             Description = description;
             DueDate = dueDate;

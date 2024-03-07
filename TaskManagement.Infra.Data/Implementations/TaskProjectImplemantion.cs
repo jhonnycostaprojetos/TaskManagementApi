@@ -18,55 +18,82 @@ namespace TaskManagement.Infra.Data.Implementations
 
         public async Task<IEnumerable<TaskProject>> GetAll(int idProject)
         {
-            return await _dataset.Include(c => c.Project).ThenInclude(t => t.TaskProject).ThenInclude(t => t.Comments).Where(w => w.ProjectId == idProject).ToListAsync();
+            try
+            {
+                return await _dataset.Include(c => c.Project).ThenInclude(t => t.TaskProject).ThenInclude(t => t.Comments).Where(w => w.ProjectId == idProject).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public async Task<TaskProject> InsertAsync(TaskProject item)
         {
-
-            int countTasks = _dataset.Where(i => i.ProjectId == item.ProjectId).Count();
-
-            if (countTasks <= 19)
+            try
             {
-                item.CreateAt = DateTime.UtcNow;
-                _dataset.Add(item);
+                int countTasks = _dataset.Where(i => i.ProjectId == item.ProjectId).Count();
 
-                await _context.SaveChangesAsync();
-                return item;
+                if (countTasks <= 19)
+                {
+                    item.CreateAt = DateTime.UtcNow;
+                    _dataset.Add(item);
+
+                    await _context.SaveChangesAsync();
+                    return item;
+                }
+                else
+                {
+                    return new TaskProject("Maximum number of Tasks!");
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return new TaskProject("Maximum number of Tasks!");
 
+                throw new Exception(ex.Message);
             }
         }
 
         public async Task<TaskProject> UpdateAsync(TaskProject taskProject)
         {
-            var task = _dataset.FirstOrDefault(t => t.Id == taskProject.Id);
-            if (task != null)
+            try
             {
- 
-                string? titleOld = task.Title;
-                string? descriptionOld = task.Description;
-                TaskStatus? statusOld = (TaskStatus?)task.Status;
-                DateTime? dueDateOld = task.DueDate;
 
-                task.Title = !string.IsNullOrWhiteSpace(taskProject.Title) ? taskProject.Title : task.Title;
-                task.Description = !string.IsNullOrWhiteSpace(taskProject.Description) ? taskProject.Description : task.Description;
-                task.Status = taskProject.Status ?? task.Status;
-                task.Priority = taskProject.Priority ?? task.Priority;
-                task.DueDate = taskProject.DueDate ?? task.DueDate;
-                task.UpdateAt = DateTime.Now;
 
-                await _context.SaveChangesAsync();
+                var task = _dataset.FirstOrDefault(t => t.Id == taskProject.Id);
+                if (task != null)
+                {
 
-                return taskProject;
+                    string? titleOld = task.Title;
+                    string? descriptionOld = task.Description;
+                    TaskStatus? statusOld = (TaskStatus?)task.Status;
+                    TaskStatus? priorityOld = (TaskStatus?)task.Priority;
+                    DateTime? dueDateOld = task.DueDate;
+
+                    task.Title = !string.IsNullOrWhiteSpace(taskProject.Title) ? taskProject.Title : task.Title;
+                    task.Description = !string.IsNullOrWhiteSpace(taskProject.Description) ? taskProject.Description : task.Description;
+                    task.Status = taskProject.Status ?? task.Status;
+                    task.Priority = taskProject.Priority ?? task.Priority;
+                    task.DueDate = taskProject.DueDate ?? task.DueDate;
+                    task.UpdateAt = DateTime.Now;
+
+                    await _context.SaveChangesAsync();
+
+                    return taskProject;
+                }
+                else
+                {
+                    return null;
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
 
+                throw new Exception(ex.Message);
             }
         }
     }

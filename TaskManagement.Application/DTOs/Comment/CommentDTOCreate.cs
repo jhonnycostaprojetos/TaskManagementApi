@@ -11,6 +11,6 @@ namespace TaskManagement.Application.DTOs.Comment
 
         [Required(ErrorMessage = "The IdTaskProject is Required")]
         public int TaskProjectId { get; set; }
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
     }
 }

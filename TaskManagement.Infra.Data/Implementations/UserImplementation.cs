@@ -16,12 +16,28 @@ namespace TaskManagement.Infra.Data.Implementations
         }
         public async Task<User> Get(int id)
         {
-            return await _dataset.Include(i => i.Projects).SingleOrDefaultAsync(s => s.Id.Equals(id));
+            try
+            {
+                return await _dataset.Include(i => i.Projects).SingleOrDefaultAsync(s => s.Id.Equals(id));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _dataset.Include(c => c.Projects).ToListAsync();
+            try
+            {
+                return await _dataset.Include(c => c.Projects).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
 
         }
     }

@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Enums;
 
@@ -23,7 +18,9 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
 
             builder.HasMany(hm => hm.Projects);
 
-            builder.HasData(new User(1, "Admin", "admin@gmail.com", DateTime.UtcNow, null));
+            builder.HasData(new User(1,UserProfile.Manager, "Admin", "admin@gmail.com", DateTime.UtcNow, null));
+            builder.HasData(new User(2,UserProfile.Manager, "Lucas", "lucas@gmail.com", DateTime.UtcNow, null));
+            builder.HasData(new User(3,UserProfile.Default, "Jhonny Costa", "jhonnydscosta@gmail.com", DateTime.UtcNow, null));
         }
     }
 }

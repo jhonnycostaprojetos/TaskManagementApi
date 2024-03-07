@@ -17,11 +17,6 @@ namespace TaskManagement.Application.Services
             _projectRepository = projectRepository;
         }
 
-        //public async Task<IEnumerable<ProjectDTO>> GetAll(int idproject)
-        //{
-        //    var listEntity = await _projectRepository.SelectAsync();
-        //    return _mapper.Map<IEnumerable<ProjectDTO>>(listEntity);
-        //    }  
         public async Task<ProjectDTO> Get(int idproject)
         {
             var listEntity = await _projectRepository.SelectAsync(idproject);

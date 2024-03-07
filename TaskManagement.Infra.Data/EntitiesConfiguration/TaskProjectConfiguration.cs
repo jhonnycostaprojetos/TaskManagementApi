@@ -22,7 +22,8 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
             builder.HasOne(ho => ho.Project);
             builder.HasMany(hm => hm.Comments);
 
-            builder.HasData(new TaskProject(1, 1, "Projeto", "Descrição", DateTime.Now, null, null));
+            builder.HasData(new TaskProject(1, 1, "Levantamento de Requisitos", "Detalhar cada ponto importante do projeto", DateTime.Now, null, null));
+            builder.HasData(new TaskProject(2, 2, "Levantamento de Requisitos", "Detalhar cada ponto importante do projeto", DateTime.Now, null, null));
         }
 
     }

@@ -14,7 +14,7 @@ namespace TaskManagement.Application.Services
         private ILogTaskProjectRepository _logTaskprojectRepository;
 
 
-        public CommentService(ICommentRepository commentRepository, IMapper mapper , ILogTaskProjectRepository logTaskprojectRepository)
+        public CommentService(ICommentRepository commentRepository, IMapper mapper, ILogTaskProjectRepository logTaskprojectRepository)
         {
             _mapper = mapper;
             _commentRepository = commentRepository;
@@ -24,15 +24,24 @@ namespace TaskManagement.Application.Services
 
         public async Task<CommentDTOCreateResponse> Post(CommentDTOCreate commentDto)
         {
-            var commentEntity = _mapper.Map<Comment>(commentDto);
+            try
+            {
+                var commentEntity = _mapper.Map<Comment>(commentDto);
 
-            LogTaskProject logTaskProject = new LogTaskProject(commentDto.TaskProjectId, commentDto.TaskComment, commentDto.IdUser);
+                LogTaskProject logTaskProject = new LogTaskProject(commentDto.TaskProjectId, commentDto.TaskComment, commentDto.UserId);
 
-            await _logTaskprojectRepository.InsertAsync(logTaskProject);
+                await _logTaskprojectRepository.InsertAsync(logTaskProject);
 
-            var result = await _commentRepository.InsertAsync(commentEntity);
+                var result = await _commentRepository.InsertAsync(commentEntity);
 
-            return _mapper.Map<CommentDTOCreateResponse>(result);
+                return _mapper.Map<CommentDTOCreateResponse>(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 }

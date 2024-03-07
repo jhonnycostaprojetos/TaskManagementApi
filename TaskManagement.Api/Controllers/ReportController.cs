@@ -21,5 +21,12 @@ namespace TaskManagement.Api.Controllers
             return Ok(await _reportService.Get(userIdManager));
 
         }
+
+        [HttpGet("ViewLogs")]
+        public async Task<IActionResult> ViewLogs()
+        {
+            return Ok(await _reportService.GetAll());
+
+        }
     }
 }

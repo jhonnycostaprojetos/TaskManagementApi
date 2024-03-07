@@ -14,25 +14,5 @@ namespace TaskManagement.Infra.Data.Implementations
         {
             _dataset = context.Set<Comment>();
         }
-
-        //public async Task<Comment> InsertAsync(Comment item)
-        //{
-
-            //int countTasks = _dataset.Where(i => i.IdTaskProject == item).Count();
-
-            //if (countTasks <= 19)
-            //{
-            //    item.CreateAt = DateTime.UtcNow;
-            //    _dataset.Add(item);
-
-            //    await _context.SaveChangesAsync();
-            //    return item;
-            //}
-            //else
-            //{
-            //    return new Comment("Maximum number of Tasks!");
-
-          //  }
-        //}
     }
 }

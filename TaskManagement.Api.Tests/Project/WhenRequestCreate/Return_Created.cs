@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TaskManagement.Api.Controllers;
 using TaskManagement.Application.DTOs.Project;
@@ -40,7 +38,7 @@ namespace TaskManagement.Api.Tests.Project.WhenRequestCreate
             };
 
             var result = await _projectController.Post(projectDTOCreate);
-            Assert.True(result is CreatedResult);
+            Assert.True(result is OkObjectResult);
 
         }
     }

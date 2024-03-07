@@ -15,11 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Domain.Tests", "TaskManagement.Domain.Tests\TaskManagement.Domain.Tests.csproj", "{530ECF93-84BB-4EF3-9B65-C22D7094539C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Application.Tests", "TaskManagement.Application.Tests\TaskManagement.Application.Tests.csproj", "{53FF4794-4749-496D-BB6D-21F016B19812}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Api.Tests", "TaskManagement.Api.Tests\TaskManagement.Api.Tests.csproj", "{64CC35E7-A089-4291-B251-F593E66CE385}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagement.Infra.Data.Tests", "TaskManagement.Infra.Data.Tests\TaskManagement.Infra.Data.Tests.csproj", "{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E0D6BB55-0626-4996-A378-97A20AA29ED6}"
 EndProject
@@ -53,18 +49,10 @@ Global
 		{530ECF93-84BB-4EF3-9B65-C22D7094539C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{530ECF93-84BB-4EF3-9B65-C22D7094539C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{530ECF93-84BB-4EF3-9B65-C22D7094539C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53FF4794-4749-496D-BB6D-21F016B19812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53FF4794-4749-496D-BB6D-21F016B19812}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53FF4794-4749-496D-BB6D-21F016B19812}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53FF4794-4749-496D-BB6D-21F016B19812}.Release|Any CPU.Build.0 = Release|Any CPU
 		{64CC35E7-A089-4291-B251-F593E66CE385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{64CC35E7-A089-4291-B251-F593E66CE385}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64CC35E7-A089-4291-B251-F593E66CE385}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64CC35E7-A089-4291-B251-F593E66CE385}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55D3F09A-69DF-47A4-9E92-73A9BA2431D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0D6BB55-0626-4996-A378-97A20AA29ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU

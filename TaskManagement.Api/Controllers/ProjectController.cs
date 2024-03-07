@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TaskManagement.Application.DTOs.Project;
-using TaskManagement.Application.DTOs.User;
 using TaskManagement.Application.Interfaces;
-using TaskManagement.Application.Services;
+
 
 namespace TaskManagement.Api.Controllers
 {
@@ -23,7 +21,7 @@ namespace TaskManagement.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{idUser}", Name = "UserId")]
+        [Route("{idUser}", Name = "GetUserWithId")]
         public async Task<ActionResult> GetUserWithId(int idUser)
         {
             if (!ModelState.IsValid)
@@ -70,7 +68,7 @@ namespace TaskManagement.Api.Controllers
 
                 if (result != null)
                 {
-                    return Created(new Uri(Url.Link("UserId", new { id = result.Id })), result);
+                    return Ok(result);
                 }
                 else
                 {

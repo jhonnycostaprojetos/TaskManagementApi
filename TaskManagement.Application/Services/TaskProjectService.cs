@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using TaskManagement.Application.DTOs.Project;
 using TaskManagement.Application.DTOs.TaskProject;
-using TaskManagement.Application.DTOs.User;
 using TaskManagement.Application.Interfaces;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interfaces;
@@ -44,16 +42,20 @@ namespace TaskManagement.Application.Services
 
         public async Task<TaskProjectDTOUpdateResponse> Put(TaskProjectDTOUpdate taskProjectDTOUpdate)
         {
-            var projectEntity = _mapper.Map<TaskProject>(taskProjectDTOUpdate);
+            try
+            {
+                var projectEntity = _mapper.Map<TaskProject>(taskProjectDTOUpdate);
 
-            LogTaskProject logTaskProject = new LogTaskProject(taskProjectDTOUpdate.ProjectId,
-                taskProjectDTOUpdate.Title, taskProjectDTOUpdate.Description,taskProjectDTOUpdate.DueDate.Value, taskProjectDTOUpdate.Status.Value);
+                LogTaskProject logTaskProject = new LogTaskProject(taskProjectDTOUpdate.ProjectId, taskProjectDTOUpdate.UserId,
+                    taskProjectDTOUpdate.Title, taskProjectDTOUpdate.Description, taskProjectDTOUpdate.DueDate.Value, taskProjectDTOUpdate.Status.Value);
 
-            await _logTaskprojectRepository.InsertAsync(logTaskProject);
+                await _logTaskprojectRepository.InsertAsync(logTaskProject);
 
-            var result = await _taskprojectRepository.UpdateAsync(projectEntity);
+                var result = await _taskprojectRepository.UpdateAsync(projectEntity);
 
-            return _mapper.Map<TaskProjectDTOUpdateResponse>(result);
+                return _mapper.Map<TaskProjectDTOUpdateResponse>(result);
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
         }
         public async Task<object> Delete(int id)
         {

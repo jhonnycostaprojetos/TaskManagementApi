@@ -36,7 +36,7 @@ namespace TaskManagement.Api.Tests.TaskProject.WhenRequestCreateComment
             {
                 TaskComment = "Name Project",
                 TaskProjectId = 2,
-                IdUser = 1,
+                UserId = 1,
             };
 
             var result = await _taskProjectController.PostComment(taskProjectDTOCreate);

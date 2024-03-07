@@ -11,6 +11,7 @@ namespace TaskManagement.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(hk => hk.Id);
             builder.Property(p => p.TaskComment).HasMaxLength(1000).HasColumnType("varchar(1000)");
+            builder.Property(p => p.UserId);
             builder.Property(p => p.CreateAt);
             builder.Property(p => p.UpdateAt);
 
