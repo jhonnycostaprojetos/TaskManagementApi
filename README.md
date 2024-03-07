@@ -9,8 +9,12 @@
 O projeto foi desenvolvido utilizando o EntityFramework com banco de dados SQLSERVER. 
 As migrações está iniciada e ao executar o comando acima, o banco de dados será criado, juntamente com as tabelas utilizadas para o projeto. 
 Para executar o projeto no docker: 
-1. Acessar a para raiz do projeto e executar o seguinte comando: docker-compose up --build.
-2. Caso não tenha o docker instalado, será necessário:
+1. Via prompt de comando, digite:
+   1. cd TaskManagement/TaskManagement.Api
+   2. dotnet build
+   1. dotnet build
+   2.docker-compose up --build.
+3. Caso não tenha o docker instalado, será necessário:
     1. Instalação do SQLSERVER2019
     2. Acessar o arquivo appsettings.json e trocar o Data Source para o endereço de instalação
     3. Após instalado o banco e ajustado o arquivo anterior, acessar a pasta TaskManagement.Infra.Data via terminal de comandos(prompt) e digitar os seguintes comandos:
